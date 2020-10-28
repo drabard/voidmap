@@ -1,4 +1,5 @@
 use std::io;
+use std::cmp::Ordering;
 
 fn main() {
     let mut first_number = String::new();
@@ -12,5 +13,9 @@ fn main() {
       expect("Failed to read line.");
     let second_number: i32 = second_number.trim().parse().expect("Failed to parse number.");
 
-    println!("First number: {}, second number: {}", first_number, second_number)
+    match first_number.cmp(&second_number) {
+      Ordering::Less => println!("First number is less than second number."),
+      Ordering::Greater => println!("First number is greater than second number."),
+      Ordering::Equal => println!("The numbers are equal.")
+    }
 }
